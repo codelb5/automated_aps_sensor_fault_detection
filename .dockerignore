@@ -1,0 +1,6 @@
+artifacts
+saved_models
+venv
+logs
+.git
+dataset
