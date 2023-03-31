@@ -84,11 +84,17 @@ class ModelEvaluation:
 
             improved_accuracy = trained_model_metrics.f1_score-latest_model_metrics.f1_score
             expected_increase_accuracy = self.model_evaluation_config.change_threshold
+            
             if expected_increase_accuracy < improved_accuracy:
                 is_model_accepted=True
             else:
                 is_model_accepted=False
+            
+            logging.info("The expected accuracy: [{0}], the improved accuracy: [{1}]".format(
+                expected_increase_accuracy, improved_accuracy
+            ))
             logging.info("is model accepted [{0}]".format(is_model_accepted))
+            
             model_evaluation_artifact = ModelEvaluationArtifact(
                 is_model_accepted=is_model_accepted
                 , improved_accuracy=improved_accuracy

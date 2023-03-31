@@ -152,7 +152,7 @@ class TrainingPipeline:
             )
 
             if not model_evaluation_artifact.is_model_accepted:
-                raise Exception("Trained model is not betrter tham best model.")
+                raise Exception("Trained model is not better than best model.")
             model_pusher_artifact  = self.start_model_pusher(
                 model_evaluation_artifact=model_evaluation_artifact
             )
