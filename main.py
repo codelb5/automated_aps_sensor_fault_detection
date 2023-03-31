@@ -37,7 +37,7 @@ async def train_route():
     except Exception as e:
         return Response(f"Error: [{e}]")
     
-
+    
 if __name__=="__main__":
     app_run(app=app, host=APP_HOST, port=APP_PORT)
 
