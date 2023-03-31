@@ -90,9 +90,9 @@ jobs:
     #    run: |
     #     docker ps -q --filter "name=sensor" | grep -q . && docker stop sensor && docker rm -fv sensor || true
 
-      - name: Stop and remove sensor container if running
-        run: |
-         docker ps -q --filter "name=sensor" | grep -q . && docker stop sensor && docker rm -fv sensor
+      # - name: Stop and remove sensor container if running
+      #   run: |
+      #    docker ps -q --filter "name=sensor" | grep -q . && docker stop sensor && docker rm -fv sensor || true
        
       - name: Run Docker Image to serve users
         run: |
