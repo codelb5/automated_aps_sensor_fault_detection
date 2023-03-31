@@ -87,6 +87,7 @@ jobs:
          docker pull ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
 
 <<<<<<< HEAD
+<<<<<<< HEAD
      - name: Stop and remove sensor container if running
        run: |
         docker ps -q --filter "name=sensor" | grep -q . && docker stop sensor && docker rm -fv sensor || true
@@ -95,6 +96,11 @@ jobs:
         run: |
          docker ps -q --filter "name=sensor" | grep -q . && docker stop sensor && docker rm -fv sensor
 >>>>>>> c5585c9de78445112b433cf4eb606240d21c6b1f
+=======
+      - name: Stop and remove sensor container if running
+        run: |
+         docker ps -q --filter "name=sensor" | grep -q . && docker stop sensor && docker rm -fv sensor || true
+>>>>>>> 1d53f64ae241ee6081878652f2a2019c1f21f882
        
       - name: Run Docker Image to serve users
         run: |
