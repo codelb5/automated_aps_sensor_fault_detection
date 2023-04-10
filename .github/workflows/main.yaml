@@ -80,11 +80,11 @@ jobs:
       
       - name: Pull latest images
         run: |
-          docker pull ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secretrs.ECR_REPOSITORY_NAME }}:latest
+          docker pull ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
         
       - name: Stop and remove sensor container if running
         run: |
-          docker stop $(docker ps -q) && docker rm -f $(dockerps --aq)
+          docker stop $(docker ps -q) && docker rm -f $(docker ps --aq)
 
       - name: Run Docker Image to server users.
         run:  |
