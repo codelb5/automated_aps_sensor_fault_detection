@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sensor.constant.application import APP_HOST, APP_PORT
 from starlette.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
-from sensor.exceptions import SensorException
+
 
 app = FastAPI()
 origins = ["*"]
