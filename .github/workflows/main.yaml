@@ -92,7 +92,7 @@ jobs:
       
       - name: Clean previous images and containers
         run: |
-          docker sytem prune --force
+          docker system prune --force
 
 
 
