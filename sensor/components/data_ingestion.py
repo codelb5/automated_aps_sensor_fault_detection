@@ -28,7 +28,7 @@ class DataIngestion:
         """
         try:
             logging.info("Importing data as a feature store.")
-            sensor_data = SensorData()
+            sensor_data = SensorData
             df = sensor_data.import_data_from_mongodb(collection_name=COLLECTION_NAME)
             feature_store_file_path = self.data_ingestion_config.feature_store_file_path
 
