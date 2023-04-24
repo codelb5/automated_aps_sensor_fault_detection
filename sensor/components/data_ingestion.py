@@ -10,12 +10,12 @@ from sensor.entity.artifact_entity import DataIngestionArtifact
 from sensor.constant.training_pipeline import SCHEMA_FILE_PATH
 from sensor.constant.database import COLLECTION_NAME
 
-class DataIngestion(SensorData):
-    def __init__(self, data_ingestion_config:DataIngestionConfig)->None:
+class DataIngestion):
+    def __init__(self, data_ingestion_config:DataIngestionConfig,  sensor_data:SensorData)->None:
         try:
-            super().__init__()
             logging.info("Data Ingestion initiated.")
             self.data_ingestion_config = data_ingestion_config
+            self.sensor_data = sensor_data
         except Exception as e:
             logging.error(str(SensorException(error_message=e)))
             raise SensorException(error_message=e)
@@ -29,7 +29,7 @@ class DataIngestion(SensorData):
         try:
             logging.info("Importing data as a feature store.")
            
-            df = self.import_data_from_mongodb(collection_name=COLLECTION_NAME)
+            df = self.sensor_data.import_data_from_mongodb(collection_name=COLLECTION_NAME)
             feature_store_file_path = self.data_ingestion_config.feature_store_file_path
 
             feature_store_dir = os.path.dirname(feature_store_file_path)
