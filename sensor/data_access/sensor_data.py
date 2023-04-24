@@ -19,7 +19,7 @@ class SensorData:
             logging.info("Connected to database [{0}]".format(DATABASE_NAME))
         except Exception as e:
             logging.ERROR("Failed to connect [{0}] database.".format(DATABASE_NAME))
-            raise SensorException(error_message=e)
+            raise SensorException(error_message="error in SensorData")
         
     def export_to_mongodb(self, file_path:str,
                           collection_name:str, database_name:Optional[str]=None):
