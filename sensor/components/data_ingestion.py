@@ -40,7 +40,7 @@ class DataIngestion:
             return df
         except Exception as e:
             logging.error(str(SensorException(error_message=e)))
-            raise SensorException(error_message=e)
+            raise SensorException(error_message="errorr in importing data")
         
     def data_split(self, df:DataFrame)->None:
         """
