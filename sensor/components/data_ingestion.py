@@ -15,7 +15,6 @@ class DataIngestion:
         try:
             logging.info("Data Ingestion initiated.")
             self.data_ingestion_config = data_ingestion_config
-            print(self.data_ingestion_config.feature_store_file_path)
         except Exception as e:
             logging.error(str(SensorException(error_message=e)))
             raise SensorException(error_message=e)
