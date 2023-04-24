@@ -13,7 +13,7 @@ class SensorData:
     """
     Description: This class helps in importing exporting data from mongoDB database.
     """
-    def __init__(self) -> None:
+    def __init__(self,):
         try:
             self.mongo_client = MongoDBClient(database_name=DATABASE_NAME)
             logging.info("Connected to database [{0}]".format(DATABASE_NAME))
