@@ -15,6 +15,7 @@ from sensor.constant.training_pipeline import SAVED_MODEL_DIR
 from sensor.constant.s3_bucket import TRAINING_BUCKET_NAME
 from sensor.cloud_storage.s3_syncer import S3Sync
 
+from sensor.data_access.sensor_data import SensorData
 
 class TrainingPipeline:
     is_pipeline_running=False
@@ -22,10 +23,11 @@ class TrainingPipeline:
     def __init__(self) -> None:
         self.training_pipeline_config = TrainingPipelineConfig()
         self.s3_sync = S3Sync()
+        self.sensor_data = SensorData()
     
     def start_data_ingestion(self,)->DataIngestionArtifact:
         try:
-            data_ingestion_config = DataIngestionConfig(training_pipeline_config=self.training_pipeline_config)
+            data_ingestion_config = DataIngestionConfig(training_pipeline_config=self.training_pipeline_config, sensor_data = self.sensor_data)
             data_ingestion = DataIngestion(data_ingestion_config=data_ingestion_config)
             data_ingestion_artifact =data_ingestion.initiate_data_ingestion()
             return data_ingestion_artifact
