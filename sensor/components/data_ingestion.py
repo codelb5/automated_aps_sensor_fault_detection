@@ -13,7 +13,7 @@ from sensor.constant.database import COLLECTION_NAME
 class DataIngestion(SensorData):
     def __init__(self, data_ingestion_config:DataIngestionConfig)->None:
         try:
-            super.__init__()
+            super().__init__()
             logging.info("Data Ingestion initiated.")
             self.data_ingestion_config = data_ingestion_config
         except Exception as e:
