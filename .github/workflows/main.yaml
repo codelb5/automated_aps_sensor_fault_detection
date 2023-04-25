@@ -84,7 +84,7 @@ jobs:
         
       - name: Stop and remove sensor container if running
         run: |
-          docker stop sensor || true && docker rm -f sensor || true 
+          docker stop sensor || true && docker rm sensor -f || true 
 
       - name: Run Docker Image to server users.
         run:  |
