@@ -92,7 +92,7 @@ jobs:
       
       - name: Clean previous images and containers
         run: |
-          docker container prune -f || true && docker image prune -f || true
+          docker container prune -af || true && docker image prune -af || true
 
 
 
