@@ -133,3 +133,5 @@ logs/
 artifacts/
 saved_models/
 *.egg-info
+# dataset
+dataset1/

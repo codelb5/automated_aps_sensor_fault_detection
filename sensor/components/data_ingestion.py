@@ -10,7 +10,7 @@ from sensor.entity.artifact_entity import DataIngestionArtifact
 from sensor.constant.training_pipeline import SCHEMA_FILE_PATH
 from sensor.constant.database import COLLECTION_NAME
 
-class DataIngestion):
+class DataIngestion:
     def __init__(self, data_ingestion_config:DataIngestionConfig,  sensor_data:SensorData)->None:
         try:
             logging.info("Data Ingestion initiated.")
@@ -69,8 +69,6 @@ class DataIngestion):
             logging.info("Train file stored as [{0}]".format(
                 os.path.basename(train_file_path)
             ))
-            print(train_data.columns)
-            print(test_data.columns)
             test_data.to_csv(test_file_path, index=False, header=True
             )
             logging.info("Train file stored as [{0}]".format(

@@ -12,8 +12,6 @@ from sensor.components.model_trainer import ModelTrainer
 from sensor.components.model_evaluation import ModelEvaluation
 from sensor.components.model_pusher import ModelPusher
 from sensor.constant.training_pipeline import SAVED_MODEL_DIR
-from sensor.constant.s3_bucket import TRAINING_BUCKET_NAME
-from sensor.cloud_storage.s3_syncer import S3Sync
 
 from sensor.data_access.sensor_data import SensorData
 
@@ -22,13 +20,12 @@ class TrainingPipeline:
 
     def __init__(self) -> None:
         self.training_pipeline_config = TrainingPipelineConfig()
-        self.s3_sync = S3Sync()
         self.sensor_data = SensorData()
     
     def start_data_ingestion(self,)->DataIngestionArtifact:
         try:
-            data_ingestion_config = DataIngestionConfig(training_pipeline_config=self.training_pipeline_config, sensor_data = self.sensor_data)
-            data_ingestion = DataIngestion(data_ingestion_config=data_ingestion_config)
+            data_ingestion_config = DataIngestionConfig(training_pipeline_config=self.training_pipeline_config)
+            data_ingestion = DataIngestion(data_ingestion_config=data_ingestion_config, sensor_data=self.sensor_data)
             data_ingestion_artifact =data_ingestion.initiate_data_ingestion()
             return data_ingestion_artifact
         except Exception as e:
@@ -116,23 +113,6 @@ class TrainingPipeline:
         except Exception as e:
             raise SensorException(error_message=e)
         
-    def sync_artifact_dir_to_s3(self,)->None:
-        try:
-            aws_bucket_url = f"s3://{TRAINING_BUCKET_NAME}/artifact/{self.training_pipeline_config.timestamp}"
-            self.s3_sync.sync_folder_to_s3(
-                folder=self.training_pipeline_config.artifact_dir, aws_bucket_url=aws_bucket_url
-            )
-        except Exception as e:
-            raise SensorException(error_message=e)
-    
-    def sync_saved_moodel_dir_to_s3(self,)->None:
-        try:
-            aws_bucket_url = f"s3://{TRAINING_BUCKET_NAME}/{SAVED_MODEL_DIR}"
-            self.s3_sync.sync_folder_to_s3(
-                folder=SAVED_MODEL_DIR, aws_bucket_url=aws_bucket_url
-            )
-        except Exception as e:
-            raise SensorException(error_message=e)
     
     def run_pipeline(self,):
         try:
@@ -161,9 +141,6 @@ class TrainingPipeline:
 
             TrainingPipeline.is_pipeline_running=False
 
-            self.sync_artifact_dir_to_s3()
-            self.sync_saved_moodel_dir_to_s3()
         except Exception as e:
-            self.sync_artifact_dir_to_s3()
             TrainingPipeline.is_pipeline_running=False
             raise SensorException(error_message=e)

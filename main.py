@@ -22,12 +22,12 @@ app.add_middleware(
 
 
 @app.get("/", tags=["authentication"])
-async def index():
+def index():
     return RedirectResponse(url="/docs")
 
 
 @app.get("/train")
-async def train_route():
+def train_route():
     try:
         train_pipeline = TrainingPipeline()
         if train_pipeline.is_pipeline_running:
@@ -40,5 +40,5 @@ async def train_route():
     
     
 if __name__=="__main__":
-    app_run(app=app, host=APP_HOST, port=APP_PORT)
+    app_run(app=app, host="127.0.0.1", port=APP_PORT)
 
