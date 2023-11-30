@@ -1,1 +1,1 @@
-# aps_sensor_fault_detection
+# "Next-Generation Truck Maintenance: Predictive Solutions for APS Sensor Health"
