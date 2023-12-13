@@ -26,4 +26,4 @@ class MongoDBClient:
         except Exception as e:
             logging.error("MongoDB connection failed.")
             raise SensorException(error_message=e)
-
+    

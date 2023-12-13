@@ -20,6 +20,7 @@ class DataValidation:
             self.data_validation_config = data_validation_config
             self._schema_config = Utils.read_yaml_file(file_path=SCHEMA_FILE_PATH)
         except Exception as e:
+            logging.error(str(e))
             raise SensorException(error_message=e)
     def drop_unnecessary_columns(self, df:pd.DataFrame, name:str)->pd.DataFrame:
         """

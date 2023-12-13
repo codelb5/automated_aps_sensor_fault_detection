@@ -40,5 +40,5 @@ def train_route():
     
     
 if __name__=="__main__":
-    app_run(app=app, host="127.0.0.1", port=APP_PORT)
+    app_run(app=app, host=APP_HOST, port=APP_PORT)
 
